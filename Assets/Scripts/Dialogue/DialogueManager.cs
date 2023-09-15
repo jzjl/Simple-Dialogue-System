@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,7 +36,6 @@ public class DialogueManager : MonoBehaviour
     #region Player Input Callbacks
     private void OnContinue(InputValue value)
     {
-        Debug.Log("On continue");
         GoToNextDialogueLine();
     }
     #endregion
@@ -60,7 +57,6 @@ public class DialogueManager : MonoBehaviour
         if(typewriter.IsTyping())
         {
             typewriter.AbortAndShowCompleteDialogueText();
-            Debug.Log("abort and show");
             return;
         }
 

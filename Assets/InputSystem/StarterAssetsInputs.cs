@@ -48,7 +48,6 @@ namespace StarterAssets
 
 		public void OnInteract(InputValue value)
 		{
-			Debug.Log("On interact");
 			InteractButtonPressed?.Invoke();
 		}
 #endif

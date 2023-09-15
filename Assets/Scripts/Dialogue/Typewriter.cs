@@ -1,17 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Typewriter : MonoBehaviour
 {
-    #region Fields And Variables
+    #region Fields
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private float timePerCharacter = 0.02f;
     private DialogueManager dialogueManager;
-    [SerializeField]
-    private TextMeshProUGUI dialogueText;
-    [SerializeField] 
-    private float timePerCharacter = 0.02f;
     private WaitForSecondsRealtime charDelay;
 
     private string textToType;
@@ -22,10 +19,13 @@ public class Typewriter : MonoBehaviour
 
 
     #region Methods
+
+    #region Unity Event Methods
     public void Start()
     {
         charDelay = new WaitForSecondsRealtime(timePerCharacter);
     }
+    #endregion
     
     public void OnTypeDialogue(string textToDisplay, Action onCompleteCallback)
     {
@@ -48,7 +48,7 @@ public class Typewriter : MonoBehaviour
         ShowCompleteDialogueText();
     }
 
-    //This function displays the dialogue text one character at a time. RichText tags are not shown.
+    //This function displays the dialogue text one character at a time. Supports RichText tags.
     private IEnumerator TypewriterCoroutine()
     {
         dialogueText.SetText(textToType);
