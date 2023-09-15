@@ -18,7 +18,6 @@ public class Typewriter : MonoBehaviour
     private Action callback;
     private int characterCount;
     private bool isTyping;
-    private bool isAbortAndShowCompleteText;
     #endregion
 
 
@@ -49,13 +48,6 @@ public class Typewriter : MonoBehaviour
         ShowCompleteDialogueText();
     }
 
-    private void ShowCompleteDialogueText()
-    {
-        dialogueText.maxVisibleCharacters = characterCount;
-        isTyping = false;
-        callback?.Invoke();
-    }
-
     //This function displays the dialogue text one character at a time. RichText tags are not shown.
     private IEnumerator TypewriterCoroutine()
     {
@@ -72,6 +64,22 @@ public class Typewriter : MonoBehaviour
         }
 
         ShowCompleteDialogueText();
+    }
+
+    private void ShowCompleteDialogueText()
+    {
+        dialogueText.maxVisibleCharacters = characterCount;
+        isTyping = false;
+        callback?.Invoke();
+
+        ClearCache();
+    }
+
+    private void ClearCache()
+    {
+        textToType = "";
+        characterCount = 0;
+        callback = null;
     }
     #endregion
 }
