@@ -15,7 +15,7 @@ public class Typewriter : MonoBehaviour
     private WaitForSecondsRealtime charDelay;
 
     private string textToType;
-    private Action callback;
+    private Action onCompleteCallback;
     private int characterCount;
     private bool isTyping;
     #endregion
@@ -27,13 +27,13 @@ public class Typewriter : MonoBehaviour
         charDelay = new WaitForSecondsRealtime(timePerCharacter);
     }
     
-    public void OnTypeDialogue(string textToDisplay, Action OnCompleteCallback)
+    public void OnTypeDialogue(string textToDisplay, Action onCompleteCallback)
     {
         StopAllCoroutines();
 
         textToType = textToDisplay;
         characterCount = dialogueText.textInfo.characterCount;
-        callback = OnCompleteCallback;
+        this.onCompleteCallback = onCompleteCallback;
         StartCoroutine(TypewriterCoroutine());
     }
 
@@ -70,7 +70,7 @@ public class Typewriter : MonoBehaviour
     {
         dialogueText.maxVisibleCharacters = characterCount;
         isTyping = false;
-        callback?.Invoke();
+        onCompleteCallback?.Invoke();
 
         ClearCache();
     }
@@ -79,7 +79,7 @@ public class Typewriter : MonoBehaviour
     {
         textToType = "";
         characterCount = 0;
-        callback = null;
+        onCompleteCallback = null;
     }
     #endregion
 }

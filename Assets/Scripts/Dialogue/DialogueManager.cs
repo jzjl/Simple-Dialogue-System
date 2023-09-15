@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
     private DialogueTemplate currentDialogueTemplate;
     private int currentDialogueLineIndex;
-
+    private Action onDialogueEndedCallback;
+    
+    [Header("Dialogue Input")]
+    [SerializeField] private PlayerInput dialogueInput;
+    
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI characterNameText;
@@ -16,13 +22,8 @@ public class DialogueManager : MonoBehaviour
     [Header("Typewriter")]
     [SerializeField] private Typewriter typewriter;
 
-    //For testing
-    [SerializeField] private DialogueTemplate testTemplate;
-
-    private void Start() {
-        StartDialogue(testTemplate);
-    }
-
+    
+    //Testing
     private void Update() {
         if(Input.GetKeyDown(KeyCode.X))
         {
@@ -30,11 +31,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
     ////////////////
-
-    public void StartDialogue(DialogueTemplate dialogueTemplate)
+    private void Start() 
     {
+        dialoguePanel.SetActive(false);
+        dialogueInput.enabled = false;
+    }
+
+    public void StartDialogue(DialogueTemplate dialogueTemplate, Action onDialogueEndedCallback)
+    {
+        dialogueInput.enabled = true;
+
         currentDialogueTemplate = dialogueTemplate;
         currentDialogueLineIndex = 0;
+        this.onDialogueEndedCallback = onDialogueEndedCallback;
+
         dialoguePanel.SetActive(true);
         ShowDialogueLine(currentDialogueTemplate.dialogueLines[currentDialogueLineIndex]);
     }
@@ -61,6 +71,10 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+        dialogueInput.enabled = false;
+
+        onDialogueEndedCallback?.Invoke();
+        onDialogueEndedCallback = null;
     }
 
     private void ShowDialogueLine(DialogueLine dialogueLine)

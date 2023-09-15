@@ -185,6 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf8dadb3960717438da03ee84980fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1310174069}
+  dialogueTemplate: {fileID: 11400000, guid: a13c6e3418bb1a242b4bc591e1b1626b, type: 2}
 --- !u!1 &312860662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1087,7 @@ GameObject:
   - component: {fileID: 1310174066}
   - component: {fileID: 1310174065}
   - component: {fileID: 1310174069}
+  - component: {fileID: 1310174070}
   m_Layer: 5
   m_Name: DialogueManger - Canvas
   m_TagString: Untagged
@@ -1187,11 +1190,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be825d2fea85f1b45ba19bc268e13d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueInput: {fileID: 1310174070}
   dialoguePanel: {fileID: 1533404296}
   characterNameText: {fileID: 1773067947}
   goToNextInstruction: {fileID: 486446667}
   typewriter: {fileID: 312860664}
-  testTemplate: {fileID: 11400000, guid: a13c6e3418bb1a242b4bc591e1b1626b, type: 2}
+--- !u!114 &1310174070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310174064}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b20d3da2051234545a421a3215259ab9,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Dialogue
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &1402827283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1411,6 +1445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
@@ -3607,7 +3646,7 @@ GameObject:
   - component: {fileID: 4102433609857985417}
   m_Layer: 8
   m_Name: NPCArmature
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

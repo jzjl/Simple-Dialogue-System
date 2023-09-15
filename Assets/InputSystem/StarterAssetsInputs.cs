@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -7,6 +8,7 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
+		public event Action InteractButtonPressed;
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
@@ -42,6 +44,12 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		public void OnInteract(InputValue value)
+		{
+			Debug.Log("On interact");
+			InteractButtonPressed?.Invoke();
 		}
 #endif
 
