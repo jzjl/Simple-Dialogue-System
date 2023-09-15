@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region Fields
     private DialogueTemplate currentDialogueTemplate;
     private int currentDialogueLineIndex;
     private Action onDialogueEndedCallback;
     
     [Header("Dialogue Input")]
     [SerializeField] private PlayerInput dialogueInput;
-    
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI characterNameText;
@@ -21,21 +22,26 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Typewriter")]
     [SerializeField] private Typewriter typewriter;
+    #endregion
 
-    
-    //Testing
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            GoToNextDialogueLine();
-        }
-    }
-    ////////////////
+
+    #region Methods
+
+    #region Unity Event Methods
     private void Start() 
     {
         dialoguePanel.SetActive(false);
         dialogueInput.enabled = false;
     }
+    #endregion
+
+    #region Player Input Callbacks
+    private void OnContinue(InputValue value)
+    {
+        Debug.Log("On continue");
+        GoToNextDialogueLine();
+    }
+    #endregion
 
     public void StartDialogue(DialogueTemplate dialogueTemplate, Action onDialogueEndedCallback)
     {
@@ -49,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         ShowDialogueLine(currentDialogueTemplate.dialogueLines[currentDialogueLineIndex]);
     }
 
-    public void GoToNextDialogueLine()
+    private void GoToNextDialogueLine()
     {
         if(typewriter.IsTyping())
         {
@@ -98,4 +104,5 @@ public class DialogueManager : MonoBehaviour
     {
         goToNextInstruction.SetActive(true);
     }
+    #endregion
 }
