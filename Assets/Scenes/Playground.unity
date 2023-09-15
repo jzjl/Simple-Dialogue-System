@@ -188,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 1310174069}
   dialogueTemplate: {fileID: 11400000, guid: a13c6e3418bb1a242b4bc591e1b1626b, type: 2}
+  instructionGO: {fileID: 2086723825}
+  playerCamRoot: {fileID: 700051398}
 --- !u!1 &312860662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.26}
+  m_AnchoredPosition: {x: 0, y: 2.01}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086723827
