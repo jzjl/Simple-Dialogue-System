@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: DialogueTemplate
   m_EditorClassIdentifier: 
   dialogueLines:
-  - characterName: a
-    dialogueText: testsets
-  - characterName: b
-    dialogueText: adfasdfadf
-  - characterName: a
-    dialogueText: adfasdfad
+  - characterName: NPC A
+    dialogueText: Welcome to the Playground!
+  - characterName: Player
+    dialogueText: What can I do here?
+  - characterName: NPC A
+    dialogueText: You are free to roam around, sprint and jump to your heart's content.
+  - characterName: Player
+    dialogueText: How do I sprint and jump again?
+  - characterName: NPC A
+    dialogueText: Hold <color="red"><b>shift</b></color> while moving to sprint.
+      Press color="red"><b>spacebar</b></color> to jump.
+  - characterName: Player
+    dialogueText: Okay, got it. Thanks a lot.
+  - characterName: NPC A
+    dialogueText: My pleasure.
