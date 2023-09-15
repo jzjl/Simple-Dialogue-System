@@ -32,8 +32,13 @@ public class Typewriter : MonoBehaviour
         StopAllCoroutines();
 
         textToType = textToDisplay;
-        characterCount = dialogueText.textInfo.characterCount;
         this.onCompleteCallback = onCompleteCallback;
+        
+        dialogueText.SetText(textToType);
+        dialogueText.ForceMeshUpdate();
+        dialogueText.maxVisibleCharacters = 0;
+        characterCount = dialogueText.textInfo.characterCount;
+
         StartCoroutine(TypewriterCoroutine());
     }
 
@@ -51,10 +56,6 @@ public class Typewriter : MonoBehaviour
     //This function displays the dialogue text one character at a time. Supports RichText tags.
     private IEnumerator TypewriterCoroutine()
     {
-        dialogueText.SetText(textToType);
-        dialogueText.ForceMeshUpdate();
-        dialogueText.maxVisibleCharacters = 0;
-        
         isTyping = true;
        
         for (int i = 0; i < characterCount; i++)

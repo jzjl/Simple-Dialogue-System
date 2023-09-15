@@ -23,7 +23,7 @@ MonoBehaviour:
     dialogueText: How do I sprint and jump again?
   - characterName: NPC A
     dialogueText: Hold <color="red"><b>shift</b></color> while moving to sprint.
-      Press color="red"><b>spacebar</b></color> to jump.
+      Press <color="red"><b>spacebar</b></color> to jump.
   - characterName: Player
     dialogueText: Okay, got it. Thanks a lot.
   - characterName: NPC A
