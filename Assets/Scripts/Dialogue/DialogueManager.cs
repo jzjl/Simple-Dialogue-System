@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueTemplate currentDialogueTemplate;
     private int currentDialogueLineIndex;
     
-    [Header("Dialogue Input")]
+    [Header("Dialogue Player Input")]
     [SerializeField] private PlayerInput dialogueInput;
 
     [Header("Dialogue UI")]
