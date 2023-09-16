@@ -59,7 +59,7 @@ public class NPC : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Gets called when the player presses the "Interact" button as mapped in the Starter Assets input action asset. Initiates a dialogue with the NPC.
+    /// Gets called when the player presses the "Interact" button as mapped in the player character's input action asset. Initiates a dialogue with the NPC.
     /// </summary>
     private void OnInteractButtonPressed()
     {
