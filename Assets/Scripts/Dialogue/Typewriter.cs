@@ -23,10 +23,15 @@ public class Typewriter : MonoBehaviour
     #region Unity Event Methods
     public void Start()
     {
+        //Used in the Typewriter coroutine to add a delay between characters.
         charDelay = new WaitForSecondsRealtime(timePerCharacter);
     }
     #endregion
     
+    /// <summary>
+    /// Initiates the typing of a given text.
+    /// </summary>
+    /// <param name="textToDisplay">The text to be typed.</param>
     public void OnTypeDialogue(string textToDisplay)
     {
         StopAllCoroutines();
@@ -41,18 +46,26 @@ public class Typewriter : MonoBehaviour
         StartCoroutine(TypewriterCoroutine());
     }
 
+    /// <summary>
+    /// Returns true if typing is still ongoing.
+    /// </summary>
     public bool IsTyping()
     {
         return isTyping;
     }
 
+    /// <summary>
+    /// Stops the typing and reveals the completed dialogue text.
+    /// </summary>
     public void AbortAndShowCompleteDialogueText()
     {
         StopAllCoroutines();
         ShowCompleteDialogueText();
     }
 
-    //This function displays the dialogue text one character at a time. Supports RichText tags.
+    /// <summary>
+    /// Displays the dialogue text one character at a time. Supports RichText tags.
+    /// </summary>
     private IEnumerator TypewriterCoroutine()
     {
         isTyping = true;
@@ -66,6 +79,9 @@ public class Typewriter : MonoBehaviour
         ShowCompleteDialogueText();
     }
 
+    /// <summary>
+    /// Reveals the entire dialogue text and fires the TypingCompleted event.
+    /// </summary>
     private void ShowCompleteDialogueText()
     {
         dialogueText.maxVisibleCharacters = characterCount;
@@ -75,6 +91,9 @@ public class Typewriter : MonoBehaviour
         ClearCache();
     }
 
+    /// <summary>
+    /// Clears variables used in typing.
+    /// </summary>
     private void ClearCache()
     {
         textToType = "";

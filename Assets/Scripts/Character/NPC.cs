@@ -24,6 +24,7 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
+        //Ensures that the instruction text is always facing the camera.
         instructionGO.transform.forward = playerCamRoot.forward;
     }
     #endregion
@@ -34,10 +35,12 @@ public class NPC : MonoBehaviour
         if(other.tag != "Player")
             return;
 
+        //Get references to the player character's input scripts when the player enters the trigger region. Subscribes to the interact-button-pressed event.
         starterAssetsInputs = other.GetComponent<StarterAssets.StarterAssetsInputs>();
         playerInput = other.GetComponent<PlayerInput>();
-        starterAssetsInputs.InteractButtonPressed += StarterAssetsInputs_InteractButtonPressed;
+        starterAssetsInputs.InteractButtonPressed += OnInteractButtonPressed;
 
+        //Activates instruction above the NPC.
         instructionGO.SetActive(true);
     }
 
@@ -46,21 +49,28 @@ public class NPC : MonoBehaviour
         if(other.tag != "Player")
             return;
 
-        starterAssetsInputs.InteractButtonPressed -= StarterAssetsInputs_InteractButtonPressed;
+        //When the player exits the trigger region, unsubscribes from the interact-button-pressed event and renable the player's inputs.
+        starterAssetsInputs.InteractButtonPressed -= OnInteractButtonPressed;
         playerInput.enabled = true;
 
+        //Deactives the instruction above the NPC.
         instructionGO.SetActive(false);
     }
     #endregion
 
-    private void StarterAssetsInputs_InteractButtonPressed()
+    /// <summary>
+    /// Gets called when the player presses the "Interact" button as mapped in the Starter Assets input action asset. Initiates a dialogue with the NPC.
+    /// </summary>
+    private void OnInteractButtonPressed()
     {
         playerInput.enabled = false;
         dialogueManager.DialogueEnded += OnDialogueEnded;
         dialogueManager.StartDialogue(dialogueTemplate);
-
     }
 
+    /// <summary>
+    /// Gets called when the dialogue has ended. Reenables the player's inputs.
+    /// </summary>
     private void OnDialogueEnded()
     {
         dialogueManager.DialogueEnded -= OnDialogueEnded;
