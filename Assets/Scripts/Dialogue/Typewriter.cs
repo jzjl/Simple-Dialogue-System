@@ -6,13 +6,13 @@ using UnityEngine;
 public class Typewriter : MonoBehaviour
 {
     #region Fields
+    public event Action TypingCompleted;
+
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private float timePerCharacter = 0.02f;
-    private DialogueManager dialogueManager;
     private WaitForSecondsRealtime charDelay;
 
     private string textToType;
-    private Action onCompleteCallback;
     private int characterCount;
     private bool isTyping;
     #endregion
@@ -27,13 +27,12 @@ public class Typewriter : MonoBehaviour
     }
     #endregion
     
-    public void OnTypeDialogue(string textToDisplay, Action onCompleteCallback)
+    public void OnTypeDialogue(string textToDisplay)
     {
         StopAllCoroutines();
 
         textToType = textToDisplay;
-        this.onCompleteCallback = onCompleteCallback;
-        
+
         dialogueText.SetText(textToType);
         dialogueText.ForceMeshUpdate();
         dialogueText.maxVisibleCharacters = 0;
@@ -71,7 +70,7 @@ public class Typewriter : MonoBehaviour
     {
         dialogueText.maxVisibleCharacters = characterCount;
         isTyping = false;
-        onCompleteCallback?.Invoke();
+        TypingCompleted?.Invoke();
 
         ClearCache();
     }
@@ -80,7 +79,6 @@ public class Typewriter : MonoBehaviour
     {
         textToType = "";
         characterCount = 0;
-        onCompleteCallback = null;
     }
     #endregion
 }

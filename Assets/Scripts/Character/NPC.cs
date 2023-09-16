@@ -56,12 +56,14 @@ public class NPC : MonoBehaviour
     private void StarterAssetsInputs_InteractButtonPressed()
     {
         playerInput.enabled = false;
-        dialogueManager.StartDialogue(dialogueTemplate, () => OnDialogueEnded());
+        dialogueManager.DialogueEnded += OnDialogueEnded;
+        dialogueManager.StartDialogue(dialogueTemplate);
 
     }
 
     private void OnDialogueEnded()
     {
+        dialogueManager.DialogueEnded -= OnDialogueEnded;
         playerInput.enabled = true;
     }
     #endregion

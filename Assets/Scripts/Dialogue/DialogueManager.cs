@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     #region Fields
+    public event Action DialogueEnded;
+
     private DialogueTemplate currentDialogueTemplate;
     private int currentDialogueLineIndex;
-    private Action onDialogueEndedCallback;
     
     [Header("Dialogue Input")]
     [SerializeField] private PlayerInput dialogueInput;
@@ -40,13 +41,12 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
-    public void StartDialogue(DialogueTemplate dialogueTemplate, Action onDialogueEndedCallback)
+    public void StartDialogue(DialogueTemplate dialogueTemplate)
     {
         dialogueInput.enabled = true;
 
         currentDialogueTemplate = dialogueTemplate;
         currentDialogueLineIndex = 0;
-        this.onDialogueEndedCallback = onDialogueEndedCallback;
 
         dialoguePanel.SetActive(true);
         ShowDialogueLine(currentDialogueTemplate.dialogueLines[currentDialogueLineIndex]);
@@ -74,9 +74,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueInput.enabled = false;
-
-        onDialogueEndedCallback?.Invoke();
-        onDialogueEndedCallback = null;
+        DialogueEnded?.Invoke();
     }
 
     private void ShowDialogueLine(DialogueLine dialogueLine)
@@ -93,7 +91,14 @@ public class DialogueManager : MonoBehaviour
 
     private void TypeDialogueText(string dialogueText)
     {
-        typewriter.OnTypeDialogue(dialogueText, () => ShowGoToNextLineInstruction());
+        typewriter.TypingCompleted += OnTypingCompleted;
+        typewriter.OnTypeDialogue(dialogueText);
+    }
+
+    private void OnTypingCompleted()
+    {
+        typewriter.TypingCompleted -= OnTypingCompleted;
+        ShowGoToNextLineInstruction();
     }
 
     private void ShowGoToNextLineInstruction()
