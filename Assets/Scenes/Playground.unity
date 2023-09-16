@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1233508149}
-  timePerCharacter: 0.5
+  timePerCharacter: 0.02
 --- !u!1 &486446667
 GameObject:
   m_ObjectHideFlags: 0
