@@ -37,7 +37,8 @@ public class Typewriter : MonoBehaviour
         StopAllCoroutines();
 
         textToType = textToDisplay;
-
+        
+        //Sets up the textMeshPro component for typing.
         dialogueText.SetText(textToType);
         dialogueText.ForceMeshUpdate();
         dialogueText.maxVisibleCharacters = 0;
