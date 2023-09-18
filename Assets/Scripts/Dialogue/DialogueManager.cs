@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     #region Unity Event Methods
     private void Start() 
     {
+        //Disables dialogue UI and inputs.
         dialoguePanel.SetActive(false);
         dialogueInput.enabled = false;
     }
