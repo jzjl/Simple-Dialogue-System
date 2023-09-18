@@ -8,14 +8,14 @@ The goal of this Unity project is to showcase a simple dialogue system. This pro
 >
 >Template used: Third person template
 
-## Controls
+### Controls
 
-# Player Character
-Camera: Mouse
-Movement: WASD
-Sprint: Hold shift while moving
-Jump: Spacebar
-Interact: F
+#### Player Character
+- Camera: Mouse
+- Movement: WASD
+- Sprint: Hold shift while moving
+- Jump: Spacebar
+- Interact: F
 
-# Dialogue
-Continue button: Spacebar
+#### Dialogue
+- Continue button: Spacebar
