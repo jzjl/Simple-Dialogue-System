@@ -2,7 +2,7 @@
  
 ### Description
 
-The goal of this Unity project is to showcase a simple dialogue system. This project contains a test scene called "Playground" where players can move their character around in a third-person perspective. Players are to enter the NPC's trigger region and interact with it to begin the dialogue. The dialogue system utilises the Observer Pattern to achieve loose coupling.
+The goal of this Unity project is to showcase a simple dialogue system. This project contains a test scene called "Playground" where players can move their character around in a third-person perspective. Players are to enter the NPC's trigger region and interact with it to begin the dialogue. The dialogue system utilises the Observer Pattern in the form of events to achieve loose coupling.
 
 >Unity version: 2021.3.9f1
 >
