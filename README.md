@@ -8,6 +8,10 @@ The goal of this Unity project is to showcase a simple dialogue system. This pro
 >
 >Template used: Third person template
 
+### Instructions
+
+To edit the dialogue lines, go to Assets/ScriptableObjects/NpcADialogueTemplate.asset to access the dialogue template scriptableObject. Each dialogue line entry consists of the character name and the dialogue text.
+
 ### Controls
 
 #### Player Character
